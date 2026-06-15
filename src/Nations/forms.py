@@ -1,5 +1,5 @@
 from django import forms
-from users.models import User
+from src.users.models import User
 from .models import NationsPreferences, color_choices
 
 class CreateMatchForm(forms.Form):

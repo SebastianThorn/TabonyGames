@@ -7,21 +7,23 @@ IN_PRODUCTION = getenv('DJANGO_LOCAL_RUN', 'FALSE') != 'TRUE'
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 if IN_PRODUCTION:
-    secrets_path = BASE_DIR.parent / 'secrets.ini'
+    secrets_path = getenv('DJANGO_SECRET_PATH', BASE_DIR.parent / 'secrets.ini')
 else:
-    secrets_path = BASE_DIR / 'local' / 'secrets.ini'
+    secrets_path = getenv('DJANGO_SECRET_PATH', BASE_DIR / 'local' / 'secrets.ini')
 
 with open(secrets_path) as secrets_file:
     secrets = ConfigParser(interpolation=None)
     secrets.read_file(secrets_file)
-    SECRET_KEY = secrets['django']['secret_key']
-    db_password = secrets['django']['db_password']
-    HELP_EMAIL = secrets['django']['help_email']
-    DEFAULT_FROM_EMAIL = secrets['django']['from_email']
+
+    SECRET_KEY = getenv('DJANGO_SECRET_KEY', secrets['django']['secret_key'])
+    db_password = getenv('DJANGO_DB_PASSWORD', secrets['django']['db_password'])
+    HELP_EMAIL = getenv('DJANGO_HELP_EMAIL', secrets['django']['help_email'])
+    DEFAULT_FROM_EMAIL = getenv('DJANGO_FROM_EMAIL', secrets['django']['from_email'])
+
     AWS_ACCESS_KEY_ID = secrets['aws']['aws_access_key_id']
     AWS_SECRET_ACCESS_KEY = secrets['aws']['aws_secret_access_key']
     AWS_SMTP_PASSWORD = secrets['aws']['aws_smtp_password']
-    AWS_REGION = secrets['aws']['region']
+    AWS_REGION = secrets['aws'].get('aws_region', 'us-east-2')
 
 DEBUG = not IN_PRODUCTION
 
@@ -168,22 +170,16 @@ else:
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
-if IN_PRODUCTION:
-    LOGGING = {
-        'version': 1,
-        'disable_existing_loggers': False,
-        'handlers': {
-            'file': {
-                'level': 'WARNING',
-                'class': 'logging.FileHandler',
-                'filename': BASE_DIR.parent.parent.parent.parent / 'logs' / 'django.log',
-            },
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
         },
-        'loggers': {
-            'django': {
-                'handlers': ['file'],
-                'level': 'WARNING',
-                'propagate': True,
-            },
-        },
-    }
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "WARNING",
+    },
+}

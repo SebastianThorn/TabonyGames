@@ -1,5 +1,5 @@
 from django import forms
-from users.models import User
+from src.users.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 class UserCreationFormWithEmail(UserCreationForm):

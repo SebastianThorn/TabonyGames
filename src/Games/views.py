@@ -11,10 +11,10 @@ from django.contrib import messages
 from django.utils.timezone import make_aware
 from django.apps import apps
 
-from users.models import User, is_superuser
-from Nations.models import NationsPreferences, Match as NationsMatch, MatchPlayer as NationsMatchPlayer
-from Nations.forms import NationsPreferencesForm
-from Games.forms import UserCreationFormWithEmail, ProfileSettings
+from src.users.models import User, is_superuser
+from src.Nations.models import NationsPreferences, Match as NationsMatch, MatchPlayer as NationsMatchPlayer
+from src.Nations.forms import NationsPreferencesForm
+from src.Games.forms import UserCreationFormWithEmail, ProfileSettings
 
 import datetime
 

@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.timezone import make_aware
 from django.core.exceptions import ObjectDoesNotExist
 
-from users.models import User, get_deleted_user
+from src.users.models import User, get_deleted_user
 from .models import Match, MatchPlayer, NationsPreferences, NationsChat
 from .forms import CreateMatchForm
 
