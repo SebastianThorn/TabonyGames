@@ -2,7 +2,7 @@
 FROM alpine:3.24
 
 # Install python
-RUN apk add --no-cache python3 py3-pip sqlite
+RUN apk add --no-cache python3 py3-pip sqlite git
 
 # Install python-environment and activate it
 RUN python3 -m venv /opt/venv
@@ -30,6 +30,10 @@ COPY manage.py /app/.
 COPY TGstatic.tar.gz /app/.
 RUN tar xvf TGstatic.tar.gz
 
+# Get latest nations from main
+RUN wget https://github.com/Logitude/nations/archive/refs/heads/main.zip
+RUN unzip main.zip
+RUN mv nations-main Nations/nations
 
 # Set up environment
 ENV REGION=us-west
