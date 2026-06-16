@@ -36,10 +36,16 @@ ENV REGION=us-west
 ENV DJANGO_SECRET_KEY=56^efa0z42ow0-xxiz08c%d4=8k=^9#34c^xj&p&u-8!fon+=1
 ENV DJANGO_LOCAL_RUN=TRUE
 ENV DJANGO_SECRET_PATH=/secrets.ini
+ENV DJANGO_SUPERUSER_USERNAME=superUser
+ENV DJANGO_SUPERUSER_EMAIL=superUser@example.com
+ENV DJANGO_SUPERUSER_PASSWORD=omeg4s3cret
 
-# RUN python manage.py migrate
-# RUN python manage.py createsuperuser
+RUN python manage.py migrate
+RUN python manage.py createsuperuser --noinput
+
+EXPOSE 8000
+
 
 # Run the game
-#CMD ["python", "manage.py"]
-CMD ["daphne", "-b", "0.0.0.0", "users.asgi:application"]
+# daphne -b 0.0.0.0 -p 8000 Games.asgi:application
+CMD ["daphne", "-b", "0.0.0.0", "-p", "8000", "Games.asgi:application"]

@@ -30,7 +30,8 @@ DEBUG = not IN_PRODUCTION
 if IN_PRODUCTION:
     ALLOWED_HOSTS = ['games.tabony.net', '208.113.131.91']
 else:
-    ALLOWED_HOSTS = ['127.0.0.1', '192.168.1.6']
+    # ALLOWED_HOSTS = ['127.0.0.1', '192.168.1.6']
+    ALLOWED_HOSTS = ['*']
 
 CSRF_COOKIE_SECURE = IN_PRODUCTION
 SESSION_COOKIE_SECURE = IN_PRODUCTION
@@ -127,7 +128,8 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'local' / 'db.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+            # 'NAME': BASE_DIR / 'local' / 'db.sqlite3',
         }
     }
 
