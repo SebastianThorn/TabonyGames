@@ -9,7 +9,7 @@ from django.db.models.functions import Now
 from django.utils.timezone import make_aware
 from django.apps import apps
 
-from src.users.models import User, get_deleted_user
+from users.models import User, get_deleted_user
 from .models import Match, MatchPlayer, NationsChat
 
 from . import nations
