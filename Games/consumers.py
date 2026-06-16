@@ -6,8 +6,8 @@ from django.contrib.sites.models import Site
 from django.db.models.functions import Now
 from django.utils.timezone import make_aware
 
-from src.users.models import User, get_deleted_user
-from src.Nations.models import Match, MatchPlayer
+from users.models import User, get_deleted_user
+from Nations.models import Match, MatchPlayer
 
 import json
 import datetime
