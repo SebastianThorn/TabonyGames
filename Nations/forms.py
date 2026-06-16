@@ -1,5 +1,10 @@
+#!/usr/bin/env python
+
+# External
 from django import forms
-from src.users.models import User
+
+# Local
+from users.models import User
 from .models import NationsPreferences, color_choices
 
 class CreateMatchForm(forms.Form):

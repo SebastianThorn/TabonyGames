@@ -1,4 +1,4 @@
-#!/usr/bin/env python 
+#!/usr/bin/env python
 
 # External
 from django.db import models
@@ -6,6 +6,7 @@ from django.db.models.functions import Now
 
 # Local
 from users.models import User, get_deleted_user, get_deleted_user_id
+
 
 class Match(models.Model):
     match_id = models.BigAutoField(primary_key=True)

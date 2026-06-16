@@ -1,6 +1,11 @@
+#!/usr/bin/env python
+
+# External
 from django import forms
-from src.users.models import User
 from django.contrib.auth.forms import UserCreationForm
+
+# Local
+from users.models import User
 
 class UserCreationFormWithEmail(UserCreationForm):
     email = forms.EmailField(required=True, label='Email', help_text='Required.')

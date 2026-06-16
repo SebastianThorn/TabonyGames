@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+
+# External
+import datetime
 from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
@@ -11,12 +15,12 @@ from django.contrib import messages
 from django.utils.timezone import make_aware
 from django.apps import apps
 
-from src.users.models import User, is_superuser
-from src.Nations.models import NationsPreferences, Match as NationsMatch, MatchPlayer as NationsMatchPlayer
-from src.Nations.forms import NationsPreferencesForm
-from src.Games.forms import UserCreationFormWithEmail, ProfileSettings
+# Local
+from users.models import User, is_superuser
+from Nations.models import NationsPreferences, Match as NationsMatch, MatchPlayer as NationsMatchPlayer
+from Nations.forms import NationsPreferencesForm
+from Games.forms import UserCreationFormWithEmail, ProfileSettings
 
-import datetime
 
 def number_of_turns(user):
     if not user.is_authenticated:

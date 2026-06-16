@@ -1,17 +1,21 @@
+#!/usr/bin/env python
+
+# External
 from django.conf import settings
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from django.utils.timezone import make_aware
 from django.core.exceptions import ObjectDoesNotExist
+import json
+import datetime
 
-from src.users.models import User, get_deleted_user
+# Local
+from users.models import User, get_deleted_user
 from .models import Match, MatchPlayer, NationsPreferences, NationsChat
 from .forms import CreateMatchForm
 
-from . import nations
+# from . import nations
 
-import json
-import datetime
 
 def number_of_turns(user):
     if not user.is_authenticated:
