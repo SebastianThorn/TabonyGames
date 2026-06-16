@@ -13,8 +13,8 @@ import datetime
 from users.models import User, get_deleted_user
 from .models import Match, MatchPlayer, NationsPreferences, NationsChat
 from .forms import CreateMatchForm
+from . import nations
 
-# from . import nations
 
 
 def number_of_turns(user):
